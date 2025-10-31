@@ -1,0 +1,11 @@
+# Caddy reverse proxy for EdTech Repository
+# Replace the domain below if needed.
+edtechrepository.com, www.edtechrepository.com {
+	encode gzip
+
+	# Proxy all requests to the app running on localhost:8000
+	reverse_proxy 127.0.0.1:8000
+}
+
+# Optional: HTTP -> HTTPS handled automatically by Caddy.
+
