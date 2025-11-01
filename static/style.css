@@ -15,6 +15,73 @@ body {
   main {
     padding: 2rem;
   }
+
+  .intro {
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: #1f2937;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: left;
+  }
+
+  .stack {
+    display: grid;
+    gap: .75rem;
+  }
+
+  label {
+    font-size: .95rem;
+    display: grid;
+    gap: .35rem;
+  }
+
+  input, select, textarea, button {
+    font: inherit;
+  }
+
+  input, select, textarea {
+    background: #0f172a;
+    color: #e5e7eb;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: .6rem .7rem;
+  }
+
+  button, .btn {
+    background: #10b981;
+    color: #03121a;
+    border: none;
+    border-radius: 8px;
+    padding: .65rem .9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .narrow {
+    max-width: 800px;
+    margin: 2rem auto;
+    text-align: left;
+  }
+
+  .results {
+    display: grid;
+    gap: .75rem;
+  }
   
   footer {
     background-color: #1e293b;

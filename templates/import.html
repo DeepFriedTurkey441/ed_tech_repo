@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Import Profiles</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main>
+    <section class="grid">
+      <!-- Faculty: left column -->
+      <div class="card">
+        <h2>Faculty: import your profile</h2>
+        <p>Paste a public faculty page. We'll draft a profile you can edit.</p>
+        <form class="stack" method="post" action="/faculty/import/preview">
+          <label>
+            Profile URL
+            <input type="url" name="profile_url" placeholder="https://university.edu/people/you" required>
+          </label>
+          <button type="submit">Fetch and draft</button>
+        </form>
+      </div>
+
+      <!-- Vendor: right column -->
+      <div class="card">
+        <h2>Vendors: import from your website</h2>
+        <p>Paste your product or company homepage.</p>
+        <form class="stack" method="post" action="/vendor/import/preview">
+          <label>
+            Website URL
+            <input type="url" name="source_url" placeholder="https://example.com" required>
+          </label>
+          <button type="submit">Fetch and draft</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="grid" style="margin-top:1.5rem;">
+      <!-- Faculty manual form (left) -->
+      <div class="card">
+        <h2>Or, create your faculty profile here</h2>
+        <form class="stack" method="post" action="/faculty/manual">
+          <label>
+            Name
+            <input type="text" name="name" required>
+          </label>
+          <label>
+            Email (.edu only — contact support if you can't comply)
+            <input type="email" name="email" placeholder="you@university.edu" required>
+          </label>
+          <label>
+            Phone (optional)
+            <input type="tel" name="phone" placeholder="(optional)">
+          </label>
+          <label>
+            Courses taught (optional)
+            <input type="text" name="courses" placeholder="e.g., Intro to Biology; Organic Chemistry">
+          </label>
+          <label>
+            Current tools used (optional)
+            <input type="text" name="tools" placeholder="Canvas, Zoom, Gradescope, ...">
+          </label>
+          <button type="submit">Create profile</button>
+        </form>
+      </div>
+
+      <!-- Vendor manual form (right) -->
+      <div class="card">
+        <h2>Or, create your vendor profile here</h2>
+        <form class="stack" method="post" action="/vendor/manual">
+          <label>
+            Company name
+            <input type="text" name="company_name" required>
+          </label>
+          <label>
+            Product name
+            <input type="text" name="product_name" required>
+          </label>
+          <label>
+            Website
+            <input type="url" name="website" placeholder="https://example.com" required>
+          </label>
+          <label>
+            Contact email
+            <input type="email" name="contact_email" required>
+          </label>
+          <label>
+            Phone (optional)
+            <input type="tel" name="phone" placeholder="(optional)">
+          </label>
+          <label>
+            Category (optional)
+            <input type="text" name="category" placeholder="assessment, analytics, authoring, ...">
+          </label>
+          <label>
+            Features (optional, comma separated)
+            <input type="text" name="features" placeholder="AI feedback, rubric grading, ...">
+          </label>
+          <label>
+            Integrations (optional, comma separated)
+            <input type="text" name="integrations" placeholder="Canvas, Moodle, Zoom, ...">
+          </label>
+          <button type="submit">Create vendor profile</button>
+        </form>
+      </div>
+    </section>
+
+    <div class="narrow" style="text-align:center; margin-top:1rem;">
+      <a class="btn" href="/">Back to homepage</a>
+    </div>
+  </main>
+</body>
+</html>
+
+

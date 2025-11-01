@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Import Faculty Profile</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="narrow">
+    <h1>Import your faculty profile from a URL</h1>
+    <p>Paste a public profile or lab page. We'll fetch details and draft a profile you can edit.</p>
+    <form class="stack" method="post" action="/faculty/import/preview">
+      <label>
+        Profile URL
+        <input type="url" name="profile_url" placeholder="https://university.edu/people/you" required>
+      </label>
+      <button type="submit">Fetch and draft</button>
+    </form>
+    <p><a class="btn" href="/">Back to homepage</a></p>
+  </main>
+</body>
+</html>
+
+

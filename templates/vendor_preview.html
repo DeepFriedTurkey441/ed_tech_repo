@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Review draft vendor profile</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="narrow">
+    <h1>Review and edit your vendor profile</h1>
+    <p>We drafted these fields from your website. Please review and edit before submitting.</p>
+    <form class="stack" method="post" action="/vendor">
+      <label>
+        Company name
+        <input type="text" name="company_name" value="{{ company_name }}" required>
+      </label>
+      <label>
+        Product name
+        <input type="text" name="product_name" value="{{ product_name }}" required>
+      </label>
+      <label>
+        Website
+        <input type="url" name="website" value="{{ website }}" required>
+      </label>
+      <label>
+        Category
+        <input type="text" name="category" value="{{ category }}" placeholder="assessment, analytics, authoring, ...">
+      </label>
+      <label>
+        Features (comma separated)
+        <input type="text" name="features" value="{{ features }}" placeholder="AI feedback, rubric grading, ...">
+      </label>
+      <label>
+        Integrations (comma separated)
+        <input type="text" name="integrations" value="{{ integrations }}" placeholder="Canvas, Moodle, Zoom, ...">
+      </label>
+      <label>
+        Pricing model
+        <input type="text" name="pricing_model" value="{{ pricing_model }}" placeholder="free, freemium, paid, institutional">
+      </label>
+      <label>
+        Contact email
+        <input type="email" name="contact_email" value="{{ contact_email }}" placeholder="you@company.com" required>
+      </label>
+      <button type="submit">Save vendor profile</button>
+    </form>
+    <p style="margin-top:1rem;"><a class="btn" href="/import">Back</a></p>
+  </main>
+</body>
+</html>
+
+

@@ -11,7 +11,86 @@
     </header>
 
     <main>
-        <p>This is your early prototype. Soon, this page will connect professors with the best tools in higher ed.</p>
+        <section class="intro">
+            <p>This is your early prototype. Soon, this page will connect professors with the best tools in higher ed.</p>
+        </section>
+
+        <section class="grid">
+            <div class="card">
+                <h2>For Faculty</h2>
+                <p>Search the repository for tools that match your needs.</p>
+                <form class="stack" method="get" action="/search">
+                    <label>
+                        Keyword
+                        <input type="text" name="keyword" placeholder="grading, AI, LMS, video, ...">
+                    </label>
+                    <label>
+                        Category
+                        <input type="text" name="category" placeholder="assessment, authoring, analytics, ...">
+                    </label>
+                    <label>
+                        Integrates with
+                        <input type="text" name="integrates_with" placeholder="Canvas, Moodle, Zoom, ...">
+                    </label>
+                    <label>
+                        Price tier
+                        <select name="price_tier">
+                            <option value="">Any</option>
+                            <option value="free">Free</option>
+                            <option value="freemium">Freemium</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                    </label>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+            <div class="card">
+                <h2>For Vendors</h2>
+                <p>Submit your product so faculty can find you without sales calls.</p>
+                <form class="stack" method="post" action="/vendor">
+                    <label>
+                        Company name
+                        <input type="text" name="company_name" required>
+                    </label>
+                    <label>
+                        Product name
+                        <input type="text" name="product_name" required>
+                    </label>
+                    <label>
+                        Website
+                        <input type="url" name="website" placeholder="https://example.com" required>
+                    </label>
+                    <label>
+                        Category
+                        <input type="text" name="category" placeholder="assessment, analytics, authoring, ..." required>
+                    </label>
+                    <label>
+                        Features (comma separated)
+                        <input type="text" name="features" placeholder="AI feedback, rubric grading, ...">
+                    </label>
+                    <label>
+                        Integrations (comma separated)
+                        <input type="text" name="integrations" placeholder="Canvas, Moodle, Zoom, ...">
+                    </label>
+                    <label>
+                        Pricing model
+                        <select name="pricing_model">
+                            <option value="">Select</option>
+                            <option value="free">Free</option>
+                            <option value="freemium">Freemium</option>
+                            <option value="paid">Paid</option>
+                            <option value="institutional">Institutional license</option>
+                        </select>
+                    </label>
+                    <label>
+                        Contact email
+                        <input type="email" name="contact_email" placeholder="you@company.com" required>
+                    </label>
+                    <button type="submit">Submit product</button>
+                </form>
+            </div>
+        </section>
     </main>
 
     <footer>

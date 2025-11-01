@@ -10,3 +10,6 @@ venv/
 
 # Environment variables
 .env
+# Local data and editor history
+.history/
+data/
