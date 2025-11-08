@@ -18,6 +18,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Point to the 'templates' folder
 templates = Jinja2Templates(directory="templates")
+# Simple util for slugs
+def slugify(text: str) -> str:
+    return "".join(ch.lower() if ch.isalnum() else "-" for ch in text).strip("-")
+
 
 # Define the homepage route
 @app.get("/", response_class=HTMLResponse)
@@ -107,13 +111,19 @@ async def search(
 
     # Soft gate: show up to 3 results to anonymous users, then prompt signup
     visible_results = results[:3]
-    items_html = "".join(
-        f"<li><strong>{r['product_name']}</strong> by {r['company_name']} — "
-        f"<a href='{r['website']}' target='_blank' rel='noopener'>site</a> | "
-        f"Category: {r.get('category','')} | Pricing: {r.get('pricing_model','')}" \
-        f"<br><small>Integrations: {', '.join(r.get('integrations', []))}</small>" \
-        f"</li>" for r in visible_results
-    )
+    items = []
+    for r in visible_results:
+        slug = slugify(r.get("product_name", "vendor"))
+        item = (
+            f"<li><strong>{r['product_name']}</strong> by {r['company_name']} — "
+            f"<a href='{r['website']}' target='_blank' rel='noopener'>site</a> | "
+            f"<a href='/vendors/{slug}'>details</a> | "
+            f"Category: {r.get('category','')} | Pricing: {r.get('pricing_model','')}"
+            f"<br><small>Integrations: {', '.join(r.get('integrations', []))}</small>"
+            f"</li>"
+        )
+        items.append(item)
+    items_html = "".join(items)
 
     if not items_html:
         items_html = "<li>No matches yet. Vendors: submit your product so it can be found.</li>"
@@ -161,6 +171,12 @@ async def combined_import(request: Request):
     return templates.TemplateResponse("import.html", {"request": request})
 
 
+@app.get("/rfp/upload", response_class=HTMLResponse)
+async def rfp_upload(request: Request):
+    # Prototype page for uploading RFPs (UI only, no backend yet)
+    return templates.TemplateResponse("rfp_upload.html", {"request": request})
+
+
 @app.post("/vendor/import/preview", response_class=HTMLResponse)
 async def vendor_import_preview(request: Request, source_url: str = Form(...)):
     url = source_url.strip()
@@ -202,6 +218,40 @@ async def vendor_import_preview(request: Request, source_url: str = Form(...)):
     }
 
     return templates.TemplateResponse("vendor_preview.html", {"request": request, **draft})
+
+
+@app.get("/faculty-commons", response_class=HTMLResponse)
+async def faculty_commons(request: Request):
+    return templates.TemplateResponse("faculty_commons.html", {"request": request})
+
+
+@app.get("/vendors/{slug}", response_class=HTMLResponse)
+async def vendor_detail(request: Request, slug: str):
+    # Try to find vendor by slug from local ndjson; fall back to a demo
+    vendor = None
+    if VENDOR_NDJSON.exists():
+        with VENDOR_NDJSON.open("r", encoding="utf-8") as f:
+            for line in f:
+                try:
+                    item = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if slugify(item.get("product_name", "")) == slug:
+                    vendor = item
+                    break
+    if vendor is None:
+        vendor = {
+            "company_name": "Demo Company",
+            "product_name": "Demo Vendor",
+            "website": "https://example.com",
+            "category": "",
+            "integrations": [],
+        }
+    tab = request.query_params.get("tab", "overview")
+    return templates.TemplateResponse(
+        "vendor_detail.html",
+        {"request": request, "vendor": vendor, "tab": tab, "slug": slug},
+    )
 
 
 @app.post("/faculty/manual", response_class=HTMLResponse)

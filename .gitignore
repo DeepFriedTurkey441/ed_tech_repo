@@ -1,3 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+data/*.ndjson
+static/*.map
+*.log
 # macOS
 .DS_Store
 

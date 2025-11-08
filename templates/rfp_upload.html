@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload RFP</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .banner {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: .75rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .dropzone {
+      border: 2px dashed #334155;
+      border-radius: 10px;
+      padding: 1.25rem;
+      background: #1f2937;
+      text-align: center;
+      color: #9ca3af;
+    }
+  </style>
+  </head>
+<body>
+  <main class="narrow">
+    <h1>Upload a requirements document (RFP)</h1>
+    <p>Upload a PDF, DOCX, or XLSX — or paste a Google Drive link. We'll parse and summarize to help match vendors. Parsing is coming soon; this page is a preview of the flow.</p>
+
+    <div class="banner">
+      <strong>.edu only</strong> — contact support if you can't comply.
+    </div>
+
+    <section class="stack">
+      <div class="dropzone">
+        Drag and drop your RFP here (disabled in prototype)
+      </div>
+
+      <label>
+        Google Drive link (disabled in prototype)
+        <input type="url" name="drive_url" placeholder="https://drive.google.com/..." disabled>
+      </label>
+
+      <label>
+        Or choose a file (disabled in prototype)
+        <input type="file" accept=".pdf,.docx,.xlsx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" disabled>
+      </label>
+
+      <button type="button" disabled>Upload and parse (coming soon)</button>
+    </section>
+
+    <p><a class="btn" href="/">Back to homepage</a></p>
+  </main>
+</body>
+</html>
+
+
+

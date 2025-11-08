@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ vendor.get('product_name', 'Vendor') }} — Details</title>
+  <link rel="stylesheet" href="/static/style.css?v=20251107-2">
+  <style>
+    .tabs { display: flex; gap: .5rem; margin-bottom: 1rem; }
+    .tab { background: transparent; color: #e5e7eb; border: 1px solid #334155; border-radius: 8px; padding: .45rem .75rem; text-decoration: none; }
+    .tab.active { background: #10b981; color: #03121a; font-weight: 700; border-color: #10b981; }
+    .discussion-box { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 1rem; }
+    .threads { display: grid; gap: .5rem; margin: 0 0 1rem 0; }
+    .thread { background: #1f2937; border: 1px solid #334155; border-radius: 8px; padding: .6rem .7rem; }
+    .banner { background:#0f172a; border:1px solid #334155; border-radius:10px; padding:.75rem 1rem; margin:.75rem 0 1rem 0; }
+    .note-box { background:#0f172a; border:1px dashed #334155; border-radius:10px; padding:1rem; color:#9ca3af; }
+  </style>
+</head>
+<body>
+  <main class="narrow">
+    <h1>{{ vendor.get('product_name') }} <small style="font-weight:400; color:#9ca3af;">by {{ vendor.get('company_name') }}</small></h1>
+
+    <div class="banner">
+      <strong>Review Status:</strong> All reviews are public. This vendor’s evaluation status: [Pending | Under Review | Completed].
+      <span class="tooltip" tabindex="0">
+        <span class="icon">ⓘ</span>
+        <div class="tooltip-content">Results are automatically published in the repository once complete.</div>
+      </span>
+    </div>
+
+    <div class="tabs">
+      <a class="tab {% if tab == 'overview' %}active{% endif %}" href="/vendors/{{ slug }}?tab=overview">Overview</a>
+      <a class="tab {% if tab == 'discussion' %}active{% endif %}" href="/vendors/{{ slug }}?tab=discussion">Discussion</a>
+    </div>
+
+    {% if tab == 'discussion' %}
+      <section class="discussion-box">
+        <h2>Faculty Discussion (Coming Soon)</h2>
+        <div class="threads">
+          <div class="thread">How does this integrate with Canvas for Gen Chem labs?</div>
+          <div class="thread">Pilot results in Organic Chem II — grading reliability</div>
+          <div class="thread">Accessibility in large enrollment sections</div>
+        </div>
+        <p class="muted" style="margin-top:.5rem;">Start a conversation — feature launching soon.</p>
+        <p class="muted" style="margin-top:.5rem;">Only verified faculty will be able to post.</p>
+      </section>
+
+      <section style="margin-top:1rem;">
+        <h3>Vendor Response (Coming Soon)</h3>
+        <div class="note-box">
+          Vendors may submit one official response per review. Responses are moderated for factual accuracy only.
+        </div>
+      </section>
+    {% else %}
+      <section class="card">
+        <p>This is a placeholder vendor overview. In the future, details, features, integrations, and reviews will be shown here.</p>
+        <p><a class="btn" href="{{ vendor.get('website') }}" target="_blank" rel="noopener">Visit website</a></p>
+      </section>
+    {% endif %}
+
+    <p><a class="btn" href="/">Back to homepage</a></p>
+  </main>
+</body>
+</html>
+
+

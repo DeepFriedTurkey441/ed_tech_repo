@@ -3,22 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>EdTech Repository</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/style.css?v=20251107-2">
 </head>
 <body>
     <header>
-        <h1>Find the right ed-tech tools for your course — no sales pitches required.</h1>
+        <h1>Find the right tools for undergraduate chemistry — no sales pitches required.</h1>
+        <p class="subhead">Every tool listed here is independently reviewed by chemistry faculty. No pay-to-play. No sales pitches.</p>
+        <nav style="margin-top:.75rem;">
+            <a href="/" class="btn" style="background:#0f172a; color:#e5e7eb; border:1px solid #334155;">Home</a>
+            <a href="/faculty-commons" class="btn" style="background:#0f172a; color:#e5e7eb; border:1px solid #334155;">Faculty Commons</a>
+        </nav>
     </header>
 
     <main>
         <section class="intro">
-            <p>This is your early prototype. Soon, this page will connect professors with the best tools in higher ed.</p>
+            <p>This pilot focuses exclusively on undergraduate chemistry. We cover: Introductory Chemistry, GOB (Nursing and Allied Health), General Chemistry, Organic, Analytical, Physical, and Biochemistry. We'll perfect chemistry first, then expand to other disciplines.</p>
+        </section>
+
+        <section class="trust-banner">
+            <h3>Trusted by Faculty-Led Peer Review Panels
+                <span class="tooltip" tabindex="0">
+                    <span class="icon">ⓘ</span>
+                    <div class="tooltip-content">Panels consist of verified instructors who evaluate each tool using transparent rubrics. Vendors can’t pay for placement.</div>
+                </span>
+            </h3>
+            <p>Vendors enter the repository through one of two transparent review tracks — <strong>Faculty-Verified</strong> or <strong>Pilot Track</strong> — ensuring fairness to both proven and emerging tools. <a href="/trust">Learn how reviews work</a>.</p>
         </section>
 
         <section class="grid">
             <div class="card">
                 <h2>For Faculty</h2>
-                <p>Search the repository for tools that match your needs.</p>
+                <p>Search only among chemistry tools peer-reviewed by teaching faculty using evidence-based rubrics.
+                    <span class="tooltip" tabindex="0">
+                        <span class="icon">ⓘ</span>
+                        <span class="tooltip-content">Tools marked “Faculty-Verified” have real classroom use and full reviews. Tools marked “Pilot” are undergoing time-limited classroom trials.</span>
+                    </span>
+                </p>
                 <form class="stack" method="get" action="/search">
                     <label>
                         Keyword
@@ -46,9 +66,39 @@
             </div>
 
             <div class="card">
+                <h2>Upload Your RFP (beta)</h2>
+                <p>Faculty — Have a chemistry requirements document or RFP? Upload it (with optional AI support) to quickly narrow down acceptable vendors.</p>
+                <p><a class="btn" href="/rfp/upload">Upload a requirements document (RFP)</a></p>
+                <p><small>.edu only — contact support if you can't comply.</small></p>
+            </div>
+
+            <div class="card">
                 <h2>For Vendors</h2>
-                <p>Submit your product so faculty can find you without sales calls.</p>
+                <p><strong>Note:</strong> Listing requires approval from our chemistry faculty panels. Vendors that pass review earn a Verified badge and appear in chemistry searches.</p>
+                <p>Choose your approval track
+                    <span class="tooltip" tabindex="0">
+                        <span class="icon">ⓘ</span>
+                        <span class="tooltip-content">Two ways to join:<br>• <strong>Faculty-Verified</strong> — for tools already used in chemistry courses and reviewed by instructors.<br>• <strong>Pilot Track</strong> — for new tools offering classroom trials reviewed after pilot results.</span>
+                    </span>
+                </p>
+                <p class="muted"><a href="/approval">Learn how vendor approval works</a></p>
+                <div class="segmented" aria-label="Select vendor track (non-functional prototype)">
+                    <button type="button" class="active" aria-pressed="true">Faculty-Verified</button>
+                    <button type="button" aria-pressed="false">Pilot Track</button>
+                </div>
+                <p>Submit your product so chemistry faculty can find you without sales calls.</p>
                 <form class="stack" method="post" action="/vendor">
+                    <label>
+                        Track
+                        <span class="tooltip" tabindex="0">
+                            <span class="icon">ⓘ</span>
+                            <div class="tooltip-content">Select the path that fits your current adoption stage.</div>
+                        </span>
+                        <select name="track" required>
+                            <option value="faculty_verified">Faculty-Verified</option>
+                            <option value="pilot">Pilot Track</option>
+                        </select>
+                    </label>
                     <label>
                         Company name
                         <input type="text" name="company_name" required>
